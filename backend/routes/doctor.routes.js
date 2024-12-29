@@ -7,7 +7,7 @@ doctorRouter.post('/doctor-login',doctorLogin)
 doctorRouter.get('/appointments',doctorAuth,appointmentDoctor)
 doctorRouter.post('/complete-appointment',doctorAuth,appointmentComplete)
 doctorRouter.post('/cancel-appointment',doctorAuth,cancelAppointment)
-doctorRouter.post('/docDashboard',doctorAuth,doctorDashboard)
+doctorRouter.get('/docDashboard',doctorAuth,doctorDashboard)
 doctorRouter.get('/profile',doctorAuth,getProfile)
 doctorRouter.post('/update-profile',doctorAuth,updateProfile)
 

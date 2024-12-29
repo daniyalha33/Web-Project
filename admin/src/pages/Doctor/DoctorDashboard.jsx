@@ -42,32 +42,39 @@ const DoctorDashboard = () => {
           <p className='font-semibold'>Latest Bookings</p>
         </div>
         <div>
-          {dashData.latestAppointments.map((item,index)=>(
-            <div className='flex items-center px-6 py-3 gap-3 hover:bg-gray-100' key={index}>
-              <img className='w-10 riunded-full' src={item.userData.image} alt="" />
-              <div className='flex-1 text-sm'>
-                <p className='text-gray-800 font-medium'>{item.userData.name}</p>
-                <p className='text-gray-600 '>{item.slotTime}</p>
+        {dashData?.latestAppointments?.length > 0 ? (
+            dashData.latestAppointments.map((item, index) => (
+              <div className='flex items-center px-6 py-3 gap-3 hover:bg-gray-100' key={index}>
+                <img className='w-10 rounded-full' src={item.userData.image} alt="" />
+                <div className='flex-1 text-sm'>
+                  <p className='text-gray-800 font-medium'>{item.userData.name}</p>
+                  <p className='text-gray-600'>{item.slotTime}</p>
+                </div>
+                {item.cancelled ? (
+                  <p className='text-red-400 text-xs font-medium'>Cancelled</p>
+                ) : item.isCompleted ? (
+                  <p className='text-green-400 text-xs font-medium'>Completed</p>
+                ) : (
+                  <div className='flex gap-2'>
+                    <img
+                      onClick={() => cancelAppointment(item._id)}
+                      className='w-10 cursor-pointer'
+                      src={assets.cancel_icon}
+                      alt='Cancel'
+                    />
+                    <img
+                      onClick={() => completeAppointment(item._id)}
+                      className='w-10 cursor-pointer'
+                      src={assets.tick_icon}
+                      alt='Approve'
+                    />
+                  </div>
+                )}
               </div>
-              {item.cancelled?<p className='text-red-400 text-xs font-medium'>
-              Cancelled
-            </p>:item.isCompleted?<p className='text-green-400 text-xs font-medium'>
-              Completed
-            </p>:<div className='flex gap-2'>
-              <img onClick={()=>cancelAppointment(item._id)}
-                className='w-10 cursor-pointer'
-                src={assets.cancel_icon}
-                alt='Cancel'
-              />
-              <img onClick={()=>completeAppointment(item._id)}
-                className='w-10 cursor-pointer'
-                src={assets.tick_icon}
-                alt='Approve'
-              />
-            </div>}
-
-            </div>
-          ))}
+            ))
+          ) : (
+            <p className='text-center py-4'>No latest appointments available.</p>
+          )}
         </div>
       </div>
     </div>

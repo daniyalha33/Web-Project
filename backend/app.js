@@ -9,7 +9,7 @@ import cloudianryConnect from './config/cloudinary.js'
 dotenv.config()
 const app=express();
 app.use(cors({
-  origin:[ 'http://localhost:5174' ,'http://localhost:5173'],// Update with your frontend URL
+  origin:[ 'http://localhost:5173' ,'http://localhost:5174'],// Update with your frontend URL
   credentials: true
 }))
 dbConnect();

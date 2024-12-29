@@ -45,7 +45,7 @@ const DoctorContextProvider = (props) => {
   }
   const getDashboard=async()=>{
     try {
-        const {data}=await axios.post(backendUrl+'/api/doctor/docDashboard',{},{
+        const {data}=await axios.get(backendUrl+'/api/doctor/docDashboard',{
             headers: { Authorization: `Bearer ${dToken}` }
           })
           if(data.success){
